@@ -25,7 +25,7 @@
 
 <script>
 
-  import sidebar from './components/Sidebar';
+  import sidebar from './views/Sidebar';
 
   export default {
     name: 'app',

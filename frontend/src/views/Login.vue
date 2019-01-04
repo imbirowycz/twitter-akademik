@@ -20,8 +20,6 @@
                     </i></li>
                 </ul>
             </div>
-
-
         </div>
         <div class="hello-option">
             <div class="hello-option__center">
@@ -45,80 +43,84 @@
 </template>
 
 <script>
-  export default {
-    name: 'hello',
-    props: { hellomsg: { type: String, required: true } },
-    data() {
-      return {
-
-        email: {
-          data: '',
-          valid: false,
-          message: ''
+    export default {
+        name: 'login',
+        // props: { hellomsg: { type: String, required: true } },
+        data() {
+            return {
+                email: {
+                    data: '',
+                    valid: false,
+                    message: ''
+                },
+                password: {
+                    data: '',
+                    valid: false,
+                    message: ''
+                },
+                error_list: [],
+            }
         },
-        password: {
-          data: '',
-          valid: false,
-          message: ''
+        methods: {
+            login: function () {
+
+                // check valid email
+                this.erroList = [];
+                if (!this.email.data == '') {
+                    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email.data)) {
+                        this.email.valid = false;
+                    }
+                    else {
+                        this.email.valid = true;
+                        this.email.message = '*Nie poprawna forma email!';
+                    }
+                } else {
+                    this.email.valid = true;
+                    this.email.message = '*Połe nie morze być puste!';
+                }
+
+                //check valid password
+                if (!this.password.data == '') {
+                    if (this.password.data.length > 6 && this.password.data.length < 12 ) {
+                        this.password.valid = false;
+
+                    } else {
+                        this.password.message = '*Nie poprawna długość hasła!';
+                        this.password.valid = true;
+                    }
+                } else {
+                    this.password.valid = true;
+                    this.password.message = '*Połe nie morze być puste!';
+                }
+                if (!this.email.valid && !this.password.valid) {
+                    let user = {
+                        email: this.email.data,
+                        password: this.password.data
+                    }
+                    alert(JSON.stringify(user));
+                }
+
+
+            },
+            linkRegister(){
+                this.$router.push("/registration-option")
+            }
         },
-        error_list: [],
-      }
-    },
-    methods: {
-      login: function () {
+        computed: {
+            /**
+             * @return {boolean}
+             */
+            ValidateEmail(){
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email) )
+                {
+                    return true;
+                }
 
-        // check valid email
-        this.erroList = [];
-        if (!this.email.data == '') {
-          this.email.valid = false;
-          if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email.data)) {
-            this.email.valid = false;
-          }
-          else {
-            console.log('*Nie poprawny email');
-            this.email.valid = true;
-            this.email.message = '*Nie poprawna forma email!';
-          }
-        } else {
-          this.email.valid = true;
-          this.email.message = '*Połe nie morze być puste!';
+                return false;
+            }
+
         }
-
-        //check valid password
-
-        if (!this.password.data == '') {
-          this.password.valid = false;
-          if (this.password.data.length < 6 || this.password.data.length > 12 ) {
-            this.password.valid = true;
-            this.password.message = '*Nie poprawna długość hasła!';
-          }
-        } else {
-          this.password.valid = true;
-          this.password.message = '*Połe nie morze być puste!';
-        }
-
-
-
-      },
-      linkRegister(){
-        this.$router.push("/register-option")
-      }
-    },
-    computed: {
-      /**
-       * @return {boolean}
-       */
-      ValidateEmail(){
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email) )
-        {
-          return true;
-        }
-
-        return false;
-      }
-
     }
-  }
 
 </script>
 
