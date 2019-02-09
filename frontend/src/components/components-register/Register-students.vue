@@ -1,6 +1,9 @@
 <template>
     <div>
-        <h>hello from student</h>
+        <h1>hello from student</h1>
+        <router-link to="/test-validate">
+          <button class="bth">Wypelnij formulaż</button>
+        </router-link>
     </div>
 </template>
 
