@@ -42,142 +42,114 @@ export default {
       } else {
         return (this.view = true);
       }
-    },
-    components: {
-      sidebar
-    },
-    computed: {
-      empty() {
-        if(this.user.length === 0){
-          return this.view = false;
-        } else {
-          return this.view = true;
-        }
-      }
     }
   },
   mounted: function() {}
 };
 </script>
 
-<style lang="scss">
-  @import "../public/scss/variable";
-  #app {
-    min-height: 100vh;
-    display:flex;
-    flex-direction:column;
+// <style lang="scss">
+//   @import "../public/scss/variable";
+//   #app {
+//     min-height: 100vh;
+//     display:flex;
+//     flex-direction:column;
 
-    .btn {
+//     .btn {
 
-      &:focus, &:hover {
-        outline: none;
-      }
-    }
-    #nav {
+//       &:focus, &:hover {
+//         outline: none;
+//       }
+//     }
+//     #nav {
 
-      display: flex;
-      justify-content: space-around;
-      padding: 1rem;
-      align-items: center;
-      background: $gray400;
-      color: white;
+//       display: flex;
+//       justify-content: space-around;
+//       padding: 1rem;
+//       align-items: center;
+//       background: $gray400;
+//       color: white;
 
-      a {
-        font-weight: bold;
-        color: white;
-        transition: color .5s;
+//       a {
+//         font-weight: bold;
+//         color: white;
+//         transition: color .5s;
 
-        &.router-link-exact-active {
-          color: red;
+//         &.router-link-exact-active {
+//           color: red;
 
-        }
-      }
-    }
+//         }
+//       }
+//     }
 
-    .main{
+//     .main{
 
-      display: flex;
-    }
-    .routerView{
+//       display: flex;
+//     }
+  
+//     .footer{
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       height: 4rem;
+//       width: 100%;
+//       background: gray;
+//       margin-top: auto;
 
+//     }
+//   }
 
-
-    }
-    .footer{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 4rem;
-      width: 100%;
-      background: gray;
-      margin-top: auto;
-
-    }
-  }
-
-  .main {
-    display: flex;
-  }
-  .routerView {
-  }
-  .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 4rem;
-    width: 100%;
-    background: gray;
-    margin-top: auto;
-  }
-}
-.height-100 {
-  height: 100%;
-}
-// .scroll-style::-webkit-scrollbar-track
-// {
-// 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-// 	border-radius: 10px;
-// 	background-color: #F5F5F5;
+//   .main {
+//     display: flex;
+//   }
+//   .routerView {
+//   }
+//   .footer {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 4rem;
+//     width: 100%;
+//     background: gray;
+//     margin-top: auto;
+//   }
+// }
+// .height-100 {
+//   height: 100%;
 // }
 
+// // classes to scroll style
 // .scroll-style::-webkit-scrollbar
 // {
-// 	width: 12px;
-// 	background-color: #F5F5F5;
+//   width: 3px;  /* for vertical scrollbars */
+//   height: 12px; /* for horizontal scrollbars */
 // }
 
-// classes to scroll style
-.scroll-style::-webkit-scrollbar
-{
-  width: 3px;  /* for vertical scrollbars */
-  height: 12px; /* for horizontal scrollbars */
-}
+// .scroll-style::-webkit-scrollbar-track
+// {
+//   background: rgba(0, 0, 0, 0.1);
+// }
 
-.scroll-style::-webkit-scrollbar-track
-{
-  background: rgba(0, 0, 0, 0.1);
-}
+// .scroll-style::-webkit-scrollbar-thumb
+// {
+//   background: rgba(0, 0, 0, 0.5);
+//   border-radius: 2px;
+// }
+// // default style to scroll
+// ::-webkit-scrollbar
+// {
+//   width: 8px;  /* for vertical scrollbars */
+//   height: 8px; /* for horizontal scrollbars */
+// }
 
-.scroll-style::-webkit-scrollbar-thumb
-{
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 2px;
-}
-// default style to scroll
-::-webkit-scrollbar
-{
-  width: 8px;  /* for vertical scrollbars */
-  height: 8px; /* for horizontal scrollbars */
-}
+// ::-webkit-scrollbar-track
+// {
+//   background: rgba(0, 0, 0, 0.1);
+// }
 
-::-webkit-scrollbar-track
-{
-  background: rgba(0, 0, 0, 0.1);
-}
-
-::-webkit-scrollbar-thumb
-{
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 2px;
-}
-</style>
+// ::-webkit-scrollbar-thumb
+// {
+//   background: rgba(0, 0, 0, 0.3);
+//   border-radius: 2px;
+// }
+// </style>
