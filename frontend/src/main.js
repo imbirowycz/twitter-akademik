@@ -2,25 +2,38 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import MenuIcon from "vue-material-design-icons/Menu.vue"
-import { sync } from 'vuex-router-sync'
-import store from './store/index'
-import Vuelidate from 'vuelidate'
-import axios from 'axios'
-// style reset default
-import styles from '../public/reset.css';
-// global css for all
-import globalScss from '../public/scss/global.scss'
+import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox';
+import bFormCheckboxGroup from 'bootstrap-vue/es/components/form-checkbox/form-checkbox-group';
+import store from "./store/store.js"
+Vue.component('b-form-checkbox-group', bFormCheckboxGroup);
+
+Vue.component('b-form-checkbox', bFormCheckbox);
+// import styles from '../public/reset.css';
+// import globalScss from '../public/scss/global.scss'
+// Vue.use(globalScss);
+Vue.config.productionTip = false;
+
+// import Vuelidate from 'vuelidate'
+// Vue.use(Vuelidate);
 
 // Bootstrap
-// import BootstrapVue from 'bootstrap-vue'
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
-// Vue.use(BootstrapVue);
+Vue.component("menu-icon", MenuIcon);
+Vue.use(BootstrapVue);
 
-Vue.use(globalScss);
-Vue.config.productionTip = false;
-Vue.use(Vuelidate);
-Vue.use(styles);
+
+// import BFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox'
+// Vue.component('b-form-checkbox', BFormCheckbox)
+
+import { Layout } from 'bootstrap-vue/es/components'
+Vue.use(Layout)
+import { Modal } from 'bootstrap-vue/es/components'
+Vue.use(Modal)
+import { Card } from 'bootstrap-vue/es/components'
+Vue.use(Card)
+import { Scrollspy } from 'bootstrap-vue/es/directives'
+Vue.use(Scrollspy)
+
+
 
 Vue.component("menu-icon", MenuIcon);
 
