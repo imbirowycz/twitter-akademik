@@ -1,118 +1,153 @@
 <template>
-    <div id="app">
-        <!--nawigacja strony-->
-        <header id="nav" v-if="view">
-            <h1>Header --> 'Nawigacja strony'</h1>
-            <router-link to="/">Hello</router-link>
-            <router-link to="/callservice">Service</router-link>
-            <router-link to="/bootstrap">Bootstrap</router-link>
-            <router-link to="/user">User</router-link>
-        </header>
+  <div id="app" class="scroll-style height-100">
+    <!--nawigacja strony-->
+    <header id="nav" v-if="view">
+      <h1>Header --> 'Nawigacja strony'</h1>
+      <router-link to="/">Hello</router-link>
+      <router-link to="/callservice">Service</router-link>
+      <router-link to="/bootstrap">Bootstrap</router-link>
+      <router-link to="/user">User</router-link>
+    </header>
 
-        <section class="main">
-            <sidebar class="sidebar" v-if="view"></sidebar>
-            <router-view :hellomsg="msg" class="routerView"></router-view>
-        </section>
+    <section class="main height-100" >
+      <sidebar class="sidebar" v-if="view"></sidebar>
+      <router-view :hellomsg="msg" class="routerView"></router-view>
+    </section>
 
-
-
-
-        <footer class="footer" v-if="view">
-            <h2>Footer</h2>
-        </footer>
-    </div>
+    <footer class="footer" v-if="view">
+      <h2>Footer</h2>
+    </footer>
+  </div>
 </template>
 
 <script>
+import sidebar from "./views/Sidebar";
 
-  import sidebar from './views/Sidebar';
-
-  export default {
-    name: 'app',
-    data () {
-      return {
-        msg: 'Welcome to your Vue.js powered Spring Boot App',
-        view: false,
-        user: {}
+export default {
+  name: "app",
+  data() {
+    return {
+      msg: "Welcome to your Vue.js powered Spring Boot App",
+      view: false,
+      user: {}
+    };
+  },
+  components: {
+    sidebar
+  },
+  computed: {
+    empty() {
+      if (this.user.length === 0) {
+        return (this.view = false);
+      } else {
+        return (this.view = true);
       }
-    },
-    components: {
-      sidebar
-    },
-    computed: {
-      empty() {
-        if(this.user.length === 0){
-          return this.view = false;
-        } else {
-          return this.view = true;
-        }
-      },
-    },
-    mounted: function () {
-
-
-
     }
-  }
+  },
+  mounted: function() {}
+};
 </script>
 
 <style lang="scss">
 
-    #app {
+body,
+#app {
+  height: 100%;
+}
+#app {
+  min-height: 100vh;
+  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
 
-        min-height: 100vh;
-        color: #2c3e50;
-        display:flex;
-        flex-direction:column;
-
-        .btn {
-
-            &:focus, &:hover {
-
-                outline: none;
-            }
-        }
-        #nav {
-
-            display: flex;
-            justify-content: space-around;
-            padding: 1rem;
-            align-items: center;
-            background: #afafaf;
-            color: white;
-
-            a {
-                font-weight: bold;
-                color: white;
-                transition: color .5s;
-
-                &.router-link-exact-active {
-                    color: red;
-
-                }
-            }
-        }
-
-        .main{
-
-            display: flex;
-        }
-        .routerView{
-
-
-
-        }
-        .footer{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 4rem;
-            width: 100%;
-            background: gray;
-            margin-top: auto;
-
-        }
-
+  .btn {
+    &:focus,
+    &:hover {
+      outline: none;
     }
+  }
+  #nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    align-items: center;
+    background: #afafaf;
+    color: white;
 
+    a {
+      font-weight: bold;
+      color: white;
+      transition: color 0.5s;
+
+      &.router-link-exact-active {
+        color: red;
+      }
+    }
+  }
+
+  .main {
+    display: flex;
+  }
+  .routerView {
+  }
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 100%;
+    background: gray;
+    margin-top: auto;
+  }
+}
+.height-100 {
+  height: 100%;
+}
+// .scroll-style::-webkit-scrollbar-track
+// {
+// 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+// 	border-radius: 10px;
+// 	background-color: #F5F5F5;
+// }
+
+// .scroll-style::-webkit-scrollbar
+// {
+// 	width: 12px;
+// 	background-color: #F5F5F5;
+// }
+
+// classes to scroll style
+.scroll-style::-webkit-scrollbar
+{
+  width: 3px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+.scroll-style::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.scroll-style::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+}
+// default style to scroll
+::-webkit-scrollbar
+{
+  width: 8px;  /* for vertical scrollbars */
+  height: 8px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
 </style>

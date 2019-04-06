@@ -1,329 +1,355 @@
 <template xmlns:v-model="http://www.w3.org/1999/xhtml">
-    <div class="hello">
+  <div class="hello">
+    <div class="hello-info">
+      <div class="hello-info__logo"></div>
 
-        <div class="hello-info">
+      <div class="hello-info__content">
+        <h1 class="hello-info__content--name">Twitter _ academic</h1>
 
-            <div class="hello-info__logo"></div>
-
-            <div class="hello-info__content">
-                <h1 class="hello-info__content--name">Twitter _ academic</h1>
-
-                <ul>
-                    <li class="hello-info__content--description">🧐 Obserwuj co się dzieje na uczelni
-                    </li>
-                    <li class="hello-info__content--description">Komunikuj się ze znajomymi 😜</li>
-                    <li class="hello-info__content--description">Zadawaj pytania <i class="material-icons">
-                        help
-                    </i></li>
-                    <li class="hello-info__content--description"> Bądź na bieżąco ... <i class="material-icons">
-                        autorenew
-                    </i></li>
-                </ul>
-            </div>
-        </div>
-        <div class="hello-option">
-            <div class="hello-option__center">
-                <h1>Logowanie</h1>
-                <form action="#"  class="hello-option__center--form ">
-                    <label for="login">
-                        <span v-if="email.valid" class="valid-error">{{email.message}}</span>
-                    </label>
-                    <input type="text" placeholder="Email" id="login" v-model="email.data" :class="{error: email.valid}" required>
-                    <label for="password">
-                        <span v-if="password.valid" class="valid-error">{{password.message}}</span>
-                    </label>
-                    <input type="password" placeholder="Hasło" id="password" v-model="password.data" :class="{error: password.valid}" required>
-                    <input type="submit" @click.prevent="login()"  value="Zaloguj się…" class="btn" >
-                    <button type="button" @click="linkRegister()" class="btn">Załóż konto</button>
-                    <router-link to="#">Nie pamiętasz hasła?</router-link>
-                </form>
-            </div>
-        </div>
+        <ul>
+          <li class="hello-info__content--description">🧐 Obserwuj co się dzieje na uczelni</li>
+          <li class="hello-info__content--description">Komunikuj się ze znajomymi 😜</li>
+          <li class="hello-info__content--description">
+            Zadawaj pytania
+            <i class="material-icons">help</i>
+          </li>
+          <li class="hello-info__content--description">
+            Bądź na bieżąco ...
+            <i class="material-icons">autorenew</i>
+          </li>
+        </ul>
+      </div>
     </div>
+    <div class="hello-option">
+      <div class="hello-option__center">
+        <h1>Logowanie</h1>
+        <form action="#" class="hello-option__center--form">
+          <label for="login">
+            <span v-if="email.valid" class="valid-error">{{email.message}}</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Email"
+            id="login"
+            v-model="email.data"
+            :class="{error: email.valid}"
+            required
+          >
+          <label for="password">
+            <span v-if="password.valid" class="valid-error">{{password.message}}</span>
+          </label>
+          <input
+            type="password"
+            placeholder="Hasło"
+            id="password"
+            v-model="password.data"
+            :class="{error: password.valid}"
+            required
+          >
+          <input type="submit" @click.prevent="login()" value="Zaloguj się…" class="btn">
+          <button type="button" @click="linkRegister()" class="btn">Załóż konto</button>
+          <router-link to="#">Nie pamiętasz hasła?</router-link>
+        </form>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'login',
-        // props: { hellomsg: { type: String, required: true } },
-        data() {
-            return {
-                email: {
-                    data: '',
-                    valid: false,
-                    message: ''
-                },
-                password: {
-                    data: '',
-                    valid: false,
-                    message: ''
-                },
-                error_list: [],
-            }
-        },
-        methods: {
-            login: function () {
-
-                // check valid email
-                this.erroList = [];
-                if (!this.email.data == '') {
-                    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email.data)) {
-                        this.email.valid = false;
-                    }
-                    else {
-                        this.email.valid = true;
-                        this.email.message = '*Nie poprawna forma email!';
-                    }
-                } else {
-                    this.email.valid = true;
-                    this.email.message = '*Połe nie morze być puste!';
-                }
-
-                //check valid password
-                if (!this.password.data == '') {
-                    if (this.password.data.length > 6 && this.password.data.length < 12 ) {
-                        this.password.valid = false;
-
-                    } else {
-                        this.password.message = '*Nie poprawna długość hasła!';
-                        this.password.valid = true;
-                    }
-                } else {
-                    this.password.valid = true;
-                    this.password.message = '*Połe nie morze być puste!';
-                }
-                if (!this.email.valid && !this.password.valid) {
-                    let user = {
-                        email: this.email.data,
-                        password: this.password.data
-                    }
-                    alert(JSON.stringify(user));
-                }
-
-
-            },
-            linkRegister(){
-                this.$router.push("/registration-option")
-            }
-        },
-        computed: {
-            /**
-             * @return {boolean}
-             */
-            ValidateEmail(){
-                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email) )
-                {
-                    return true;
-                }
-
-                return false;
-            }
-
+export default {
+  name: "login",
+  // props: { hellomsg: { type: String, required: true } },
+  data() {
+    return {
+      email: {
+        data: "",
+        valid: false,
+        message: ""
+      },
+      password: {
+        data: "",
+        valid: false,
+        message: ""
+      },
+      error_list: []
+    };
+  },
+  methods: {
+    login: function() {
+      // check valid email
+      this.erroList = [];
+      if (!this.email.data == "") {
+        if (
+          /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email.data)
+        ) {
+          this.email.valid = false;
+        } else {
+          this.email.valid = true;
+          this.email.message = "*Nie poprawna forma email!";
         }
-    }
+      } else {
+        this.email.valid = true;
+        this.email.message = "*Połe nie morze być puste!";
+      }
 
+      //check valid password
+      if (!this.password.data == "") {
+        if (this.password.data.length > 6 && this.password.data.length < 12) {
+          this.password.valid = false;
+        } else {
+          this.password.message = "*Nie poprawna długość hasła!";
+          this.password.valid = true;
+        }
+      } else {
+        this.password.valid = true;
+        this.password.message = "*Połe nie morze być puste!";
+      }
+      if (!this.email.valid && !this.password.valid) {
+        let user = {
+          email: this.email.data,
+          password: this.password.data
+        };
+        alert(JSON.stringify(user));
+      }
+    },
+    linkRegister() {
+      this.$router.push("/registration-option");
+    }
+  },
+  computed: {
+    /**
+     * @return {boolean}
+     */
+    ValidateEmail() {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
+        return true;
+      }
+
+      return false;
+    }
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" >
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Mali");
 
-    @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
-    @import url('https://fonts.googleapis.com/css?family=Roboto');
-    @import url('https://fonts.googleapis.com/css?family=Mali');
+// variable color
+$green-transparent: rgba(#d9f4d7, 0.9);
+$pink-transparent-2: rgba(red, 0.2);
+$pink-transparent-8: rgba(red, 0.5);
 
-    // variable color
-    $green-transparent: rgba(#d9f4d7, .9);
-    $pink-transparent-2: rgba(red, .2);
-    $pink-transparent-8: rgba(red, .5);
+@keyframes rotations {
+  0%,
+  30%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-15deg);
+  }
+  20% {
+    transform: rotate(15deg);
+  }
+}
+@keyframes rotations360 {
+  0%,
+  30%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-360deg);
+  }
+  20% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes error-valid {
+  0%,
+  30%,
+  100% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-0.5rem);
+  }
+  20% {
+    transform: translateX(0.5rem);
+  }
+}
 
+.hello {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 100vh;
+  position: relative;
 
-    @keyframes rotations {
-        0% , 30%, 100%{transform: rotate(0deg);}
-        10% {transform: rotate(-15deg);}
-        20% {transform: rotate(15deg);}
+  .hello-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $green-transparent;
+    width: 50%;
+    margin-right: 0.3rem;
+
+    .hello-info__logo {
+      position: absolute;
+      width: 8rem;
+      height: 8rem;
+      top: 5%;
+      left: calc(50% - 4rem);
+      border-radius: 50%;
+      display: block;
+      background: white url("../assets/sggw.png") center;
+      background-size: 120% 120%;
+      animation: rotations 3.4s infinite linear;
+      overflow: hidden;
+
+      &:hover {
+        animation: rotations360 1s infinite linear;
+      }
     }
-    @keyframes rotations360 {
-        0% , 30%, 100%{transform: rotate(0deg);}
-        10% {transform: rotate(-360deg);}
-        20% {transform: rotate(360deg);}
-    }
-    @keyframes error-valid {
-        0% , 30%, 100%{transform: translateX(0);}
-        10% {transform: translateX(-.5rem);}
-        20% {transform: translateX(.5rem);}
-    }
-
-
-    .hello {
-        width: 100%;
+    .hello-info__content {
+      ul > li {
+        align-items: center;
         display: flex;
-        align-items: stretch;
-        justify-content: space-between;
-        height: 100vh;
-        position: relative;
 
-        .hello-info {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: $green-transparent;
-            width: 50%;
-            margin-right: .3rem;
+        &::before {
+          display: inline-block;
+          padding: 0.2rem;
+          content: "●";
+          color: #ff99b3;
+          width: 1em;
+          margin-left: -1em;
+        }
+      }
+      .hello-info__content--name {
+        font-size: 2.5rem;
+        font-family: "Permanent Marker", cursive;
+        font-weight: 600;
+        color: #ff99b3;
+        margin-bottom: 0.7rem;
+      }
+      .hello-info__content--description {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 0.7rem;
+        font-family: "Mali", cursive;
+      }
+    }
+  }
 
-            .hello-info__logo {
-                position: absolute;
-                width: 8rem;
-                height: 8rem;
-                top: 5%;
-                left: calc(50% - 4rem);
-                border-radius: 50%;
-                display: block;
-                background: white url("../assets/sggw.png") center;
-                background-size: 120% 120%;
-                animation: rotations 3.4s infinite linear;
-                overflow: hidden;
+  .hello-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $pink-transparent-2;
 
-                &:hover {
-                    animation: rotations360 1s infinite linear;
-                }
+    width: 50%;
+    margin-left: 0.3rem;
 
-            }
-            .hello-info__content {
+    .hello-option__center {
+      width: 60%;
+      min-height: 6rem;
+      /*background: rgba(#d9f4d7, .8);*/
+      background: white;
+      margin: 0 auto;
+      padding: 1rem 3rem 3rem 3rem;
+      box-sizing: border-box;
+      border-radius: 0.5rem;
+      box-shadow: 0px 0px 31px -12px rgba(0, 0, 0, 0.75);
 
-                ul > li{
-                    align-items: center;
-                    display: flex;
+      h1 {
+        text-align: center;
+        font-family: "Permanent Marker", cursive;
+        color: #d9f4d7;
+        font-size: 2rem;
+      }
 
-                    &::before {
-                        display: inline-block;
-                        padding: .2rem;
-                        content: '●';
-                        color: #ff99b3;
-                        width: 1em;
-                        margin-left: -1em;
+      .hello-option__center--form {
+        width: 100%;
 
+        input {
+          width: 100%;
+          margin-bottom: 0.5rem;
+          display: block;
+          padding: 0.4rem;
+          border-radius: 0.5rem;
 
-                    }
-                }
-                .hello-info__content--name {
-                    font-size: 2.5rem;
-                    font-family: 'Permanent Marker', cursive;
-                    font-weight: 600;
-                    color: #ff99b3;
-                    margin-bottom: .7rem;
+          //background: rgba(#d9f4d7, .8);
+          border: solid 0.09rem #1da1f2;
+          /*&::placeholder{*/
+          /*color: #1da1f2;*/
+          /*}*/
 
-                }
-                .hello-info__content--description {
-                    font-size: 1.5rem;
-                    font-weight: 500;
-                    margin-bottom: .7rem;
-                    font-family: 'Mali', cursive;
-                }
-            }
+          &:focus {
+            outline: none;
+            box-shadow: inset 0px 0px 50px -22px rgba(0, 0, 0, 0.45);
+          }
         }
 
-        .hello-option {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: $pink-transparent-2;
+        input[type="submit"] {
+          margin-top: 1.5rem;
+          padding: 0.5rem;
+          background: #1da1f2;
+          color: white;
+          /*font-weight: 600;*/
+          transition: background-color 0.2s, color 0.2s;
+          border: solid 0.09rem #1da1f2;
 
-            width: 50%;
-            margin-left: .3rem;
-
-            .hello-option__center{
-                width: 60%;
-                min-height: 6rem;
-                /*background: rgba(#d9f4d7, .8);*/
-                background: white;
-                margin: 0 auto;
-                padding: 1rem 3rem 3rem 3rem;
-                box-sizing: border-box;
-                border-radius: .5rem;
-                box-shadow: 0px 0px 31px -12px rgba(0,0,0,0.75);
-
-                h1{
-                    text-align: center;
-                    font-family: 'Permanent Marker', cursive;
-                    color: #d9f4d7;
-                    font-size: 2rem;
-
-                }
-
-                .hello-option__center--form {
-
-                    width: 100%;
-
-
-
-                    input{
-                        width: 100%;
-                        margin-bottom: .5rem;
-                        display: block;
-                        padding: .4rem;
-                        border-radius: .5rem;
-
-
-                        //background: rgba(#d9f4d7, .8);
-                        border: solid .09rem #1da1f2;
-                        /*&::placeholder{*/
-                        /*color: #1da1f2;*/
-                        /*}*/
-
-                        &:focus{
-                            outline: none;
-                            box-shadow: inset 0px 0px 50px -22px rgba(0,0,0,0.45);
-
-                        }
-
-
-                    }
-
-                    input[type=submit]{
-                        margin-top: 1.5rem;
-                        padding: .5rem;
-                        background: #1da1f2;
-                        color: white;
-                        /*font-weight: 600;*/
-                        transition: background-color .2s, color .2s;
-                        border: solid .09rem #1da1f2;
-
-
-
-
-
-                        &:hover{
-                            background: #1d79be;
-                            color: white;
-
-                        }
-                    }
-                    button {
-                        box-sizing: border-box;
-                        background-color: white;
-                        color: #1da1f2;
-                        border: solid .09rem #1da1f2;
-                        margin-bottom: .5rem;
-
-
-                        &:hover {
-                            background: #1d79be;
-                            color: white;
-                        }
-                    }
-                }
-            }
-
+          &:hover {
+            background: #1d79be;
+            color: white;
+          }
         }
+        button {
+          box-sizing: border-box;
+          background-color: white;
+          color: #1da1f2;
+          border: solid 0.09rem #1da1f2;
+          margin-bottom: 0.5rem;
 
+          &:hover {
+            background: #1d79be;
+            color: white;
+          }
+        }
+      }
     }
-    .error {
-        border: solid .09rem red!important;
-        animation: error-valid .5s  linear;
+  }
+  .btn {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: blue;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: background-color 0.2s, color 0.2s;
+    border: none;
+    width: 100%;
+    display: block;
+    font-family: "Roboto", sans-serif;
 
+    &:hover {
+      outline: none;
+      background: #96b094;
+      color: white;
+      cursor: pointer;
     }
-    .valid-error{
-        color: red;
-        font-size: .7rem;
-    }
+  }
+}
+.error {
+  border: solid 0.09rem red !important;
+  animation: error-valid 0.5s linear;
+}
+.valid-error {
+  color: red;
+  font-size: 0.7rem;
+}
 </style>

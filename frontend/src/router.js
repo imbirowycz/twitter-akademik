@@ -30,12 +30,12 @@ export default new Router({
             component: RegisterOption
         },
         {
-            path: '/registration-teacher',
+            path: '/register-teacher',
             name: 'Register-teacher',
             component: RegisterTeacher
         },
         {
-            path: '/registration-student',
+            path: '/register-student',
             name: 'Register-student',
             component: RegisterStudent
         },
@@ -54,5 +54,6 @@ export default new Router({
             name: 'User',
             component: User
         }
-    ]
+    ],
+    mode: 'history'
 })

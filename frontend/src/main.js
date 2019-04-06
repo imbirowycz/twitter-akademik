@@ -5,11 +5,15 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import MenuIcon from "vue-material-design-icons/Menu.vue"
+import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox';
+import bFormCheckboxGroup from 'bootstrap-vue/es/components/form-checkbox/form-checkbox-group';
+import store from "./store/store.js"
+Vue.component('b-form-checkbox-group', bFormCheckboxGroup);
 
-
-import styles from '../public/reset.css';
-import globalScss from '../public/scss/global.scss'
-Vue.use(globalScss);
+Vue.component('b-form-checkbox', bFormCheckbox);
+// import styles from '../public/reset.css';
+// import globalScss from '../public/scss/global.scss'
+// Vue.use(globalScss);
 Vue.config.productionTip = false;
 
 // import Vuelidate from 'vuelidate'
@@ -18,7 +22,21 @@ Vue.config.productionTip = false;
 // Bootstrap
 Vue.component("menu-icon", MenuIcon);
 Vue.use(BootstrapVue);
-Vue.use(styles);
+
+
+// import BFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox'
+// Vue.component('b-form-checkbox', BFormCheckbox)
+
+import { Layout } from 'bootstrap-vue/es/components'
+Vue.use(Layout)
+import { Modal } from 'bootstrap-vue/es/components'
+Vue.use(Modal)
+import { Card } from 'bootstrap-vue/es/components'
+Vue.use(Card)
+import { Scrollspy } from 'bootstrap-vue/es/directives'
+Vue.use(Scrollspy)
+
+
 
 import axios from 'axios'
 
@@ -28,6 +46,7 @@ export const AXIOS = axios.create({
 
 new Vue({
     router,
+    store,
     render: h => h(App)
 }).$mount('#app')
 
