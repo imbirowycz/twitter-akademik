@@ -42,6 +42,18 @@ export default {
       } else {
         return (this.view = true);
       }
+    },
+    components: {
+      sidebar
+    },
+    computed: {
+      empty() {
+        if(this.user.length === 0){
+          return this.view = false;
+        } else {
+          return this.view = true;
+        }
+      }
     }
   },
   mounted: function() {}
@@ -49,39 +61,57 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "../public/scss/variable";
+  #app {
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
 
-body,
-#app {
-  height: 100%;
-}
-#app {
-  min-height: 100vh;
-  color: #2c3e50;
-  display: flex;
-  flex-direction: column;
+    .btn {
 
-  .btn {
-    &:focus,
-    &:hover {
-      outline: none;
-    }
-  }
-  #nav {
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem;
-    align-items: center;
-    background: #afafaf;
-    color: white;
-
-    a {
-      font-weight: bold;
-      color: white;
-      transition: color 0.5s;
-
-      &.router-link-exact-active {
-        color: red;
+      &:focus, &:hover {
+        outline: none;
       }
+    }
+    #nav {
+
+      display: flex;
+      justify-content: space-around;
+      padding: 1rem;
+      align-items: center;
+      background: $gray400;
+      color: white;
+
+      a {
+        font-weight: bold;
+        color: white;
+        transition: color .5s;
+
+        &.router-link-exact-active {
+          color: red;
+
+        }
+      }
+    }
+
+    .main{
+
+      display: flex;
+    }
+    .routerView{
+
+
+
+    }
+    .footer{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 4rem;
+      width: 100%;
+      background: gray;
+      margin-top: auto;
+
     }
   }
 

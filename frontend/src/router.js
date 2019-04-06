@@ -10,6 +10,8 @@ import RegisterTeacher from './views/registration/Register-teacher';
 import RegisterStudent from './views/registration/Register-students';
 
 
+
+
 Vue.use(Router)
 
 export default new Router({

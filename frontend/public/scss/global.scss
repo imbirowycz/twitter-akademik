@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Mali');
+
+@keyframes error-valid {
+  0% , 30%, 100%{transform: translateX(0);}
+  10% {transform: translateX(-.5rem);}
+  20% {transform: translateX(.5rem);}
+}
+.valid-error{
+  color: red;
+  font-size: .7rem;
+}
 
 .btn {
 
@@ -23,4 +34,12 @@
     color: white;
     cursor: pointer;
   }
+}
+input{
+  outline: none;
+}
+.error {
+  border: solid .09rem red!important;
+  animation: error-valid .5s  linear;
+
 }

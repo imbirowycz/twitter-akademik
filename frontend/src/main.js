@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 import MenuIcon from "vue-material-design-icons/Menu.vue"
 import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox';
 import bFormCheckboxGroup from 'bootstrap-vue/es/components/form-checkbox/form-checkbox-group';
@@ -38,15 +35,17 @@ Vue.use(Scrollspy)
 
 
 
-import axios from 'axios'
+Vue.component("menu-icon", MenuIcon);
 
 export const AXIOS = axios.create({
     baseURL: `/api`
 });
 
+sync(store, router);
+
 new Vue({
     router,
     store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
 
