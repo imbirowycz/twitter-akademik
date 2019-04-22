@@ -2,7 +2,7 @@
   <div class="hello">
     <div class="hello-info">
       <div class="hello-info__logo"></div>
-      <router-link to="/register-teacher">
+      <router-link to="/registration/options/teacher">
         <div class="hello-eg">
           <h1 class="bolster">Teacher</h1>
           <i class="material-icons">business_center</i>
@@ -10,7 +10,7 @@
       </router-link>
     </div>
     <div class="hello-option">
-      <router-link to="/register-student">
+      <router-link to="/registration/options/student">
         <div class="hello-eg">
           <h1 class="bolster">Student</h1>
           <i class="material-icons">school</i>
@@ -27,23 +27,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$green-transparent: rgba(#d9f4d7, 0.9);
-$pink-transparent-2: rgba(red, 0.3);
-$pink-transparent-8: rgba(red, 0.5);
 
 .bolster {
   position: absolute;
   display: inline-block;
   top: -4rem;
   left: 0;
-  color: white;
+  color: $white;
   font-size: 3rem;
   font-family: "Permanent Marker", cursive;
   transition: color 0.2s;
 }
 .hello-eg {
   position: relative;
-  background: white;
+  background: $white;
   padding: 3rem;
   border-radius: 50%;
   transition: background-color 0.2s;
@@ -56,20 +53,24 @@ $pink-transparent-8: rgba(red, 0.5);
 .hello-info {
   .hello-eg {
     flex-direction: column;
+    background: $pink;
+    .bolster {
+        color: $pink;
+      }
 
     .material-icons {
-      color: #ff99b3;
+      color: $green;
     }
 
     &:hover {
-      background: #ff99b3;
+      background: $white;
       cursor: pointer;
 
       .bolster {
-        color: #ff99b3;
+        color: $white;
       }
       .material-icons {
-        color: #d9f4d7;
+        color: $pink;
       }
     }
   }
@@ -77,21 +78,26 @@ $pink-transparent-8: rgba(red, 0.5);
 
 .hello-option {
   flex-direction: column;
+  
 
   .material-icons {
-    color: #d9f4d7;
+    color: $pink;
   }
 
   .hello-eg {
+    background-color: $green;
+    .bolster {
+        color: $green;
+      }
     &:hover {
-      background: #d9f4d7;
+      background: $white;
       cursor: pointer;
 
       .bolster {
-        color: #d9f4d7;
+        color: $white;
       }
       .material-icons {
-        color: #ff99b3;
+        color: $green;
       }
     }
   }

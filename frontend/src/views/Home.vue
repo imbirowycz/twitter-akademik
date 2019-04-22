@@ -2,15 +2,9 @@
     <div>
         <h3>Hello from Home!</h3>
         <div v-if="userGet">
-            <ul>
-                <li>{{userGet.firstName}}</li>
-                <li>{{userGet.lastName}}</li>
-                <li>{{userGet.email}}</li>
-                <li>{{userGet.numberAl}}</li>
-                <li>{{userGet.fieldOfStudy}}</li>
-                <li>{{userGet.degree}}</li>
-                <li>{{userGet.mode}}</li>
-                <li>{{userGet.year}}</li>
+            <ul v-for="(value, key, index) in userGet" :key="index">
+                <li>{{key}}: {{value}}</li>
+               
 
             </ul>
         </div>

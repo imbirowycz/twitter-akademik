@@ -113,7 +113,7 @@ export default {
       }
     },
     linkRegister() {
-      this.$router.push("/registration-option");
+      this.$router.push("/registration");
     }
   },
   computed: {
@@ -136,11 +136,6 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/css?family=Mali");
-
-// variable color
-$green-transparent: rgba(#d9f4d7, 0.9);
-$pink-transparent-2: rgba(red, 0.2);
-$pink-transparent-8: rgba(red, 0.5);
 
 @keyframes rotations {
   0%,
@@ -194,7 +189,7 @@ $pink-transparent-8: rgba(red, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $green-transparent;
+    background: $green;
     width: 50%;
     margin-right: 0.3rem;
 
@@ -202,11 +197,11 @@ $pink-transparent-8: rgba(red, 0.5);
       position: absolute;
       width: 8rem;
       height: 8rem;
-      top: 5%;
+      top: 8%;
       left: calc(50% - 4rem);
       border-radius: 50%;
       display: block;
-      background: white url("../assets/sggw.png") center;
+      background: $white url("../assets/sggw.png") center;
       background-size: 120% 120%;
       animation: rotations 3.4s infinite linear;
       overflow: hidden;
@@ -224,7 +219,7 @@ $pink-transparent-8: rgba(red, 0.5);
           display: inline-block;
           padding: 0.2rem;
           content: "●";
-          color: #ff99b3;
+          color: $pink;
           width: 1em;
           margin-left: -1em;
         }
@@ -233,7 +228,7 @@ $pink-transparent-8: rgba(red, 0.5);
         font-size: 2.5rem;
         font-family: "Permanent Marker", cursive;
         font-weight: 600;
-        color: #ff99b3;
+        color: $pink;
         margin-bottom: 0.7rem;
       }
       .hello-info__content--description {
@@ -249,7 +244,7 @@ $pink-transparent-8: rgba(red, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $pink-transparent-2;
+    background: $pink;
 
     width: 50%;
     margin-left: 0.3rem;
@@ -257,8 +252,8 @@ $pink-transparent-8: rgba(red, 0.5);
     .hello-option__center {
       width: 60%;
       min-height: 6rem;
-      /*background: rgba(#d9f4d7, .8);*/
-      background: white;
+      /*background: rgba($green, .8);*/
+      background: $white;
       margin: 0 auto;
       padding: 1rem 3rem 3rem 3rem;
       box-sizing: border-box;
@@ -268,7 +263,7 @@ $pink-transparent-8: rgba(red, 0.5);
       h1 {
         text-align: center;
         font-family: "Permanent Marker", cursive;
-        color: #d9f4d7;
+        color: $green;
         font-size: 2rem;
       }
 
@@ -282,8 +277,8 @@ $pink-transparent-8: rgba(red, 0.5);
           padding: 0.4rem;
           border-radius: 0.5rem;
 
-          //background: rgba(#d9f4d7, .8);
-          border: solid 0.09rem #1da1f2;
+          //background: rgba($green, .8);
+          border: solid 0.09rem $blue;
           /*&::placeholder{*/
           /*color: #1da1f2;*/
           /*}*/
@@ -297,27 +292,27 @@ $pink-transparent-8: rgba(red, 0.5);
         input[type="submit"] {
           margin-top: 1.5rem;
           padding: 0.5rem;
-          background: #1da1f2;
-          color: white;
+          background: $blue;
+          color: $white;
           /*font-weight: 600;*/
           transition: background-color 0.2s, color 0.2s;
-          border: solid 0.09rem #1da1f2;
+          border: solid 0.09rem $blue;
 
           &:hover {
-            background: #1d79be;
-            color: white;
+            background: $blue-hover;
+            color: $white;
           }
         }
         button {
           box-sizing: border-box;
-          background-color: white;
-          color: #1da1f2;
-          border: solid 0.09rem #1da1f2;
+          background-color: $white;
+          color: $blue;
+          border: solid 0.09rem $blue;
           margin-bottom: 0.5rem;
 
           &:hover {
-            background: #1d79be;
-            color: white;
+            background: $blue-hover;
+            color: $white;
           }
         }
       }
@@ -326,8 +321,8 @@ $pink-transparent-8: rgba(red, 0.5);
   .btn {
     padding: 0.5rem;
     border-radius: 0.5rem;
-    background: blue;
-    color: white;
+    background: $blue;
+    color: $white;
     font-weight: 600;
     font-size: 0.8rem;
     transition: background-color 0.2s, color 0.2s;
@@ -339,17 +334,17 @@ $pink-transparent-8: rgba(red, 0.5);
     &:hover {
       outline: none;
       background: #96b094;
-      color: white;
+      color: $white;
       cursor: pointer;
     }
   }
 }
 .error {
-  border: solid 0.09rem red !important;
+  border: solid 0.09rem $invalid !important;
   animation: error-valid 0.5s linear;
 }
 .valid-error {
-  color: red;
+  color: $invalid;
   font-size: 0.7rem;
 }
 </style>

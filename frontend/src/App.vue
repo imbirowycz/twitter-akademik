@@ -48,7 +48,17 @@ export default {
 };
 </script>
 
-// <style lang="scss">
+ <style lang="scss">
+ html,body {
+   height: 100vh;
+ }
+ .height-100 {
+   height: 100%;
+ }
+ .ui.multiple.search.dropdown, .ui.multiple.search.dropdown {
+    height: 38px!important;
+}
+ 
 //   @import "../public/scss/variable";
 //   #app {
 //     min-height: 100vh;
@@ -136,20 +146,20 @@ export default {
 //   border-radius: 2px;
 // }
 // // default style to scroll
-// ::-webkit-scrollbar
-// {
-//   width: 8px;  /* for vertical scrollbars */
-//   height: 8px; /* for horizontal scrollbars */
-// }
+::-webkit-scrollbar
+{
+  width: 8px;  /* for vertical scrollbars */
+  height: 8px; /* for horizontal scrollbars */
+}
 
-// ::-webkit-scrollbar-track
-// {
-//   background: rgba(0, 0, 0, 0.1);
-// }
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
 
-// ::-webkit-scrollbar-thumb
-// {
-//   background: rgba(0, 0, 0, 0.3);
-//   border-radius: 2px;
-// }
-// </style>
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+</style>

@@ -12,8 +12,25 @@ module.exports = {
       }
     }
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        data: `@import "@/styles/variables.scss";`
+      }
+    }
+  },
   // Change build paths to make them Maven compatible
   // see https://cli.vuejs.org/config/
   outputDir: 'target/dist',
   assetsDir: 'static'
 }
+// const path = require("path");
+
+// module.exports = {
+//   pluginOptions: {
+//     "style-resources-loader": {
+//       preProcessor: "scss",
+//       patterns: [path.resolve(__dirname, "./src/styles/variables.scss")]
+//     }
+//   }
+// };
