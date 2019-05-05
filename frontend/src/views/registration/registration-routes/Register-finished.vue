@@ -1,17 +1,75 @@
 <template>
   <div class="register-finished">
-    <div class="content-block-center" style="min-height: 80%;">
-        <b-row>
-            <b-col>
-                <h3>Hello from the finiszed registration.</h3>
-            </b-col>
-        </b-row>
+    <div class="content-block-center" style="height: 80%;">
+      <b-row class="d-flex align-items-center justify-content-center" style="height: 100%; margin: 0;">
+        <b-col class="col-12" style="min-height: 30px; margin-top: 20px;">
+          <div v-if="error" class="alert alert-danger" role="alert">{{msg}}</div>
+        </b-col>
+        <b-col>
+          <b-form @submit.prevent="onSubmit">
+            <div class="box-form">
+              <b-form-group id="input-group-pass" label="Hasło:" label-for="input-pass" inline>
+                <b-form-input id="input-pass" v-model="password" type="password" required></b-form-input>
+              </b-form-group>
+            </div>
+            <div class="box-form">
+              <b-form-group
+                id="input-group-pass2"
+                label="Powtórz hasło:"
+                label-for="input-pass2"
+                inline
+              >
+                <b-form-input id="input-pass2" v-model="confirmPassword" type="password" required></b-form-input>
+              </b-form-group>
+            </div>
+            <div class="box-form">
+              <b-button type="submit" variant="primary">Zapisz</b-button>
+            </div>
+          </b-form>
+        </b-col>
+        <b-col style="text-align: center;">
+          <h4>Proszę wprowadzić hasło.</h4>
+          <p>
+            Hasło nie może być krótsze niż 6 znaków,
+            <br>możesz użyć zarówno duże, jak i małe litery.
+            <br>Hasło musi zawierać cyfry, jak i znaki specjalne!
+          </p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+            ></path>
+          </svg>
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
-  name: "Register-finished"
+  name: "Register-finished",
+  data() {
+    return {
+      password: null,
+      confirmPassword: null,
+      error: false,
+      msg: ""
+    };
+  },
+  computed: {},
+  methods: {
+    ...mapMutations("user", ["setPasswordInUser"]),
+    onSubmit() {
+      if (this.password == this.confirmPassword) {
+        this.error = false;
+        this.setPasswordInUser(this.password);
+      } else {
+        this.error = true;
+        this.msg = "Hasła muszą się zgadzać!";
+      }
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

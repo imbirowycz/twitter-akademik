@@ -5,9 +5,13 @@ export default {
     },
     mutations: {
       createdUser (state, payload) {
-          console.log(payload)
+          // console.log(payload)
         state.user = Object.assign ({}, payload)
-        console.log('user - ', state.user)
+        // console.log('user - ', state.user)
+      },
+      setPasswordInUser (state, payload) {
+        state.user.password =  payload;
+        // console.log('user - ',state.user)
       }
   
     },

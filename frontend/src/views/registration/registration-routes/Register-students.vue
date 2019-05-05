@@ -2,7 +2,7 @@
   <div class="register-student height-100">
     <div class="content-block-center">
       <b-row class="justify-content-center p-4">
-        <b-col cols="12" class>
+        <b-col cols="12" >
           <h4 class="">Proszę wypełnić poniższy formularz:</h4>
           <b-form @submit="onSubmit" @reset="onReset" v-if="show" >
             <div class="d-flex flex-wrap">

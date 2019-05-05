@@ -56,7 +56,7 @@ export default {
    height: 100%;
  }
  .ui.multiple.search.dropdown, .ui.multiple.search.dropdown {
-    height: 38px!important;
+    min-height: 38px!important;
 }
  
 //   @import "../public/scss/variable";

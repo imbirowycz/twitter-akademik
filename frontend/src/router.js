@@ -10,6 +10,7 @@ import RegisterOption from './views/registration/registration-routes/Register-op
 import RegisterTeacher from './views/registration/registration-routes/Register-teacher';
 import RegisterStudent from './views/registration/registration-routes/Register-students';
 import RegisterFinished from './views/registration/registration-routes/Register-finished';
+import Auth from '@/auth.js'
 
 export default new Router({
   routes: [
@@ -17,6 +18,7 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+      beforeEnter: Auth
     },
     {
       path: '/login',

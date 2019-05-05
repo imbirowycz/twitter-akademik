@@ -62,7 +62,6 @@
                 </b-form-group>-->
                 <b-form-group label="Przedmiot(y):" label-for="degree" >
                   <multi-select
-                  style="min-height: 38px;"
                   id="multi-select"
                     :options="scientificOptions"
                     :selected-options="form.scientific"
