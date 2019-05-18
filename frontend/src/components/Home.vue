@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import login from './Login'
+  import login from './login/Login'
 
   export default {
     name: 'home',

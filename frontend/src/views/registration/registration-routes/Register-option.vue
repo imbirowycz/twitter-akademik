@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <div class="hello-info">
-      <div class="hello-info__logo"></div>
-      <router-link to="/registration/options/teacher">
+      <!-- <div class="hello-info__logo"></div> -->
+      <router-link @click.native="setStatus(true)" to="/registration/options/teacher">
         <div class="hello-eg">
           <h1 class="bolster">Teacher</h1>
           <i class="material-icons">business_center</i>
@@ -10,7 +10,7 @@
       </router-link>
     </div>
     <div class="hello-option">
-      <router-link to="/registration/options/student">
+      <router-link @click.native="setStatus(false)" to="/registration/options/student">
         <div class="hello-eg">
           <h1 class="bolster">Student</h1>
           <i class="material-icons">school</i>
@@ -22,12 +22,20 @@
 
 <script>
 export default {
-  name: "Register-option"
+  name: "Register-option",
+  methods: {
+    setStatus(value) {
+      if (value) {
+        this.$emit('bildUser', {statusUser: 'teacher'})
+      } else {
+        this.$emit('bildUser', {statusUser: 'student'})
+      } 
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
-
 .bolster {
   position: absolute;
   display: inline-block;
@@ -55,8 +63,8 @@ export default {
     flex-direction: column;
     background: $pink;
     .bolster {
-        color: $pink;
-      }
+      color: $pink;
+    }
 
     .material-icons {
       color: $green;
@@ -78,7 +86,6 @@ export default {
 
 .hello-option {
   flex-direction: column;
-  
 
   .material-icons {
     color: $pink;
@@ -87,8 +94,8 @@ export default {
   .hello-eg {
     background-color: $green;
     .bolster {
-        color: $green;
-      }
+      color: $green;
+    }
     &:hover {
       background: $white;
       cursor: pointer;

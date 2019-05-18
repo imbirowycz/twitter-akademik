@@ -8,6 +8,8 @@ import MenuIcon from "vue-material-design-icons/Menu.vue"
 import bFormCheckbox from 'bootstrap-vue/es/components/form-checkbox/form-checkbox';
 import bFormCheckboxGroup from 'bootstrap-vue/es/components/form-checkbox/form-checkbox-group';
 import store from "./store/store.js"
+import loader from '@/components/Loader'
+Vue.component('loader', loader)
 Vue.component('b-form-checkbox-group', bFormCheckboxGroup);
 
 Vue.component('b-form-checkbox', bFormCheckbox);
@@ -43,6 +45,7 @@ import axios from 'axios'
 export const AXIOS = axios.create({
     baseURL: `/api`
 });
+Vue.prototype.$eventHub = new Vue(); // Global event bus
 Vue.config.productionTip = false
 new Vue({
     router,

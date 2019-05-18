@@ -1,66 +1,80 @@
 <template xmlns:v-model="http://www.w3.org/1999/xhtml">
-  <div class="hello">
-    <div class="hello-info">
-      <div class="hello-info__logo"></div>
+  <loader :status="status">
+    <div class="hello">
+      <div class="hello-info">
+        <!-- <div class="hello-info__logo"></div> -->
 
-      <div class="hello-info__content">
-        <h1 class="hello-info__content--name">Twitter _ academic</h1>
+        <div class="hello-info__content" v-if="!param">
+          <!-- <h1 class="hello-info__content--name">Twitter _ academic</h1> -->
+          
+          <h1 class="hello-info__content--name">jakas nazwa</h1>
 
-        <ul>
-          <li class="hello-info__content--description">🧐 Obserwuj co się dzieje na uczelni</li>
-          <li class="hello-info__content--description">Komunikuj się ze znajomymi 😜</li>
-          <li class="hello-info__content--description">
-            Zadawaj pytania
-            <i class="material-icons">help</i>
-          </li>
-          <li class="hello-info__content--description">
-            Bądź na bieżąco ...
-            <i class="material-icons">autorenew</i>
-          </li>
-        </ul>
+          <ul>
+            <li class="hello-info__content--description">🧐 Obserwuj co się dzieje na uczelni</li>
+            <li class="hello-info__content--description">Komunikuj się ze znajomymi 😜</li>
+            <li class="hello-info__content--description">
+              Zadawaj pytania
+              <i class="material-icons">help</i>
+            </li>
+            <li class="hello-info__content--description">
+              Bądź na bieżąco ...
+              <i class="material-icons">autorenew</i>
+            </li>
+          </ul>
+        </div>
+        <div v-else class="info-message"> {{param}}</div>
+      </div>
+      <div class="hello-option">
+        <div class="hello-option__center">
+          <h1>Logowanie</h1>
+          <form action="#" class="hello-option__center--form">
+            <label for="login">
+              <span v-if="email.valid" class="valid-error">{{email.message}}</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Email"
+              id="login"
+              v-model="email.data"
+              :class="{error: email.valid}"
+              required
+            >
+            <label for="password">
+              <span v-if="password.valid" class="valid-error">{{password.message}}</span>
+            </label>
+            <input
+              type="password"
+              placeholder="Hasło"
+              id="password"
+              v-model="password.data"
+              :class="{error: password.valid}"
+              required
+            >
+            <input type="submit" @click.prevent="login()" value="Zaloguj się…" class="btn">
+            <button type="button" @click="linkRegister()" class="btn">Załóż konto</button>
+            <router-link to="#">Nie pamiętasz hasła?</router-link>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="hello-option">
-      <div class="hello-option__center">
-        <h1>Logowanie</h1>
-        <form action="#" class="hello-option__center--form">
-          <label for="login">
-            <span v-if="email.valid" class="valid-error">{{email.message}}</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Email"
-            id="login"
-            v-model="email.data"
-            :class="{error: email.valid}"
-            required
-          >
-          <label for="password">
-            <span v-if="password.valid" class="valid-error">{{password.message}}</span>
-          </label>
-          <input
-            type="password"
-            placeholder="Hasło"
-            id="password"
-            v-model="password.data"
-            :class="{error: password.valid}"
-            required
-          >
-          <input type="submit" @click.prevent="login()" value="Zaloguj się…" class="btn">
-          <button type="button" @click="linkRegister()" class="btn">Załóż konto</button>
-          <router-link to="#">Nie pamiętasz hasła?</router-link>
-        </form>
-      </div>
-    </div>
-  </div>
+  </loader>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+import Loader from "@/components/Loader";
 export default {
   name: "login",
+  components: {
+    Loader
+  },
+  props: {
+    param: String
+  },
   // props: { hellomsg: { type: String, required: true } },
   data() {
     return {
+      status: "LOADED",
       email: {
         data: "",
         valid: false,
@@ -75,6 +89,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations("user", ["createdUser"]),
     login: function() {
       // check valid email
       this.erroList = [];
@@ -109,7 +124,15 @@ export default {
           email: this.email.data,
           password: this.password.data
         };
-        alert(JSON.stringify(user));
+        // alert(this.loginUser(user));
+        if (this.loginUser(user)) {
+          this.status = "LOADING";
+          setTimeout(x => {
+            this.createdUser(user);
+            this.$router.push("/");
+            this.status = "LOADED";
+          }, 2000);
+        }
       }
     },
     linkRegister() {
@@ -117,6 +140,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters("user", ["loginUser"]),
     /**
      * @return {boolean}
      */
@@ -192,7 +216,13 @@ export default {
     background: $green;
     width: 50%;
     margin-right: 0.3rem;
-
+  .info-message {
+    width: 60%;
+        font-size: 2rem;
+        font-family: "Roboto", cursive;
+        font-weight: 600;
+        color: $pink;
+      }
     .hello-info__logo {
       position: absolute;
       width: 8rem;
@@ -201,7 +231,7 @@ export default {
       left: calc(50% - 4rem);
       border-radius: 50%;
       display: block;
-      background: $white url("../assets/sggw.png") center;
+      background: $white url("../../assets/sggw.png") center;
       background-size: 120% 120%;
       animation: rotations 3.4s infinite linear;
       overflow: hidden;

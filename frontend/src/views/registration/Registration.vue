@@ -1,26 +1,32 @@
 <template>
-  <div class="registration" style="height: 100%;">
-    <div class="main-progress">
-      <!-- {{$route.path}} -->
-      <div class="main-progress-bar">
-        <div
-          v-for="(step, index) in links"
-          :key="index"
-          class="main-progress-bar__line"
-          :class="{isSubLink: step.isSubLink, isActive: step.isActive}"
-        >
-          <span>Krok {{index+1}}</span>
+    <div class="registration" style="height: 100%;">
+      <div class="main-progress">
+        <!-- {{$route.path}} -->
+        <div v-if="getStatus != 'LOADING' " class="main-progress-bar">
+          <div
+            v-for="(step, index) in links"
+            :key="index"
+            class="main-progress-bar__line"
+            :class="{isSubLink: step.isSubLink, isActive: step.isActive}"
+          >
+            <span>Krok {{index+1}}</span>
+          </div>
         </div>
       </div>
+      <router-view v-on:setStatus="setStatus" v-on:bildUser="bildUser">
+      </router-view>
     </div>
-    <router-view></router-view>
-  </div>
 </template>
 <script>
+import Loader from "@/components/Loader";
+import {mapGetters} from "vuex"
 export default {
   name: "Registration",
+
   data() {
     return {
+      status: "LOADED",
+      user: {},
       links: [
         {
           url_1: "/registration/options",
@@ -44,6 +50,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters('loader', ['getStatus']),
     currentRoutPathOptions() {
       if (this.$route.path.includes("/registration/options")) return true;
       else return false;
@@ -71,7 +78,16 @@ export default {
           x.isSubLink = true;
         else x.isSubLink = false;
       });
-    }
+    },
+    setStatus(status) {
+      console.log("wywolano setStatus");
+      this.status = status;
+    },
+    bildUser(payload) {
+      this.user = Object.assign(this.user, payload);
+      console.log(this.user, "wywolano metode bildUser");
+    },
+    finishedBildUser() {}
   },
   beforeRouteUpdate(to, from, next) {
     this.steDecorator(to.path);
@@ -134,6 +150,7 @@ export default {
 </style>
 <style lang="scss">
 .registration {
+  width: 100%;
   .content-block-center {
     width: 80%;
     margin: 0 auto;
